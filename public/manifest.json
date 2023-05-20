@@ -1,6 +1,6 @@
 {
-  "short_name": "React App",
-  "name": "Create React App Sample",
+  "short_name": "Clipper",
+  "name": "Clipper The Clipboard",
   "icons": [
     {
       "src": "favicon.ico",
