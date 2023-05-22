@@ -3,6 +3,7 @@ const path = require("path");
 
 const app = electron.app;
 const BrowserWindow = electron.BrowserWindow;
+const ipcMain = electron.ipcMain;
 
 let mainWindow;
 let loadingWindow;
@@ -39,6 +40,14 @@ app.on("ready", () => {
 
   loadingWindow.loadFile(path.join(__dirname, "./loader.html"));
   loadingWindow.show();
+
+  mainWindow.webContents.on("did-finish-load", () => {
+    mainWindow.webContents.send("electron-is-calling", "Hello from Electron!");
+  });
+});
+
+ipcMain.on("react-is-calling", (event, data) => {
+  console.log("Received event from React:", data);
 });
 
 app.on("second-instance", () => {
